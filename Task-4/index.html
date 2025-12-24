@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piyush Dolas | Software Developer & Electronics Engineer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #1a4d2e; /* Deep Professional Green */
+            --accent: #2d5a27;
+            --text-dark: #1a1a1a;
+            --text-muted: #555555;
+            --bg-white: #ffffff;
+            --bg-light: #f9fbf9;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 100px 0; }
+        .bg-light { background-color: var(--bg-light); }
+        .mt-2 { margin-top: 2rem; }
+
+        /* --- NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%; z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .nav-container { display: flex; justify-content: center; align-items: center; }
+        .logo { text-decoration: none; font-size: 1.5rem; color: var(--text-dark); font-weight: 700;position: absolute; left: 2rem; }
+        .logo span { color: var(--primary); }
+        .nav-links { display: flex; list-style: none; align-items: center; gap: 2.5rem; }
+        .nav-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 0.9rem; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-cta { background: var(--primary); color: #fff !important; padding: 0.6rem 1.5rem; border-radius: 4px; position: absolute; right: 2rem;}
+
+        /* --- HERO SECTION --- */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 4rem;
+            min-height: 95vh;
+            padding-top: 80px;
+        }
+        .headline { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .subheadline { font-size: 1.25rem; font-weight: 600; color: var(--text-muted); margin-bottom: 1rem; }
+        .hero-description { max-width: 500px; font-size: 1.1rem; margin-bottom: 2.5rem; color: var(--text-muted); }
+        .hero-btns { display: flex; gap: 1rem; }
+        .btn { text-decoration: none; padding: 1rem 2rem; border-radius: 4px; font-weight: 600; transition: var(--transition); display: inline-block; }
+        .btn-primary { background: var(--primary); color: #fff; }
+        .btn-secondary { border: 1px solid #ddd; color: var(--text-dark); }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+
+        .hero-img-container { position: relative; }
+        .profile-img { width: 100%; border-radius: 20px; box-shadow: 30px 30px 0px var(--bg-light); }
+
+        /* --- CARDS (SKILLS & PROJECTS) --- */
+        .section-title { font-size: 3rem; margin-bottom: 4rem; text-align: left; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: #fff; padding: 3rem; border: 1px solid #eee; transition: var(--transition); border-radius: 12px; }
+        .card:hover { border-color: var(--primary); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
+        .card h3 { margin-bottom: 1rem; font-size: 1.5rem; }
+        .tags { margin-top: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tags span { font-size: 0.7rem; background: var(--bg-light); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+
+        /* --- EXPERIENCE --- */
+        .exp-card { margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 2rem; }
+        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .badge { color: var(--primary); font-weight: 700; font-size: 0.9rem; }
+        .sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 3rem; }
+        .sim-item { padding: 1.5rem; background: var(--bg-light); border-radius: 8px; font-weight: 600; font-size: 0.9rem; border: 1px solid #eee; }
+
+        /* --- EDUCATION & CONTACT --- */
+        .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .list-style { list-style: none; margin-top: 1.5rem; }
+        .list-style li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; }
+        .list-style li::before { content: "→"; position: absolute; left: 0; color: var(--primary); }
+
+        .contact-box { text-align: center; max-width: 800px; margin: 0 auto; }
+        .huge-text { font-size: 6rem; color: var(--primary); margin: 1.5rem 0; line-height: 1; }
+        .contact-img { width: 100%; max-width: 500px; border-radius: 20px; margin-top: 3rem; }
+
+        /* --- FOOTER --- */
+        .footer { padding: 40px 0; border-top: 1px solid #eee; text-align: center; font-size: 0.9rem; color: var(--text-muted); }
+
+        /* --- ANIMATIONS --- */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hero-grid, .edu-grid { grid-template-columns: 1fr; text-align: center; }
+            .headline { font-size: 3rem; }
+            .hero-description { margin: 0 auto 2rem; }
+            .social-links{  display: flex; justify-content: center; align-items: center; gap: 1.5rem;margin-top: 8rem; }
+            .nav-links { display: none; }
+            .huge-text { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="logo"><span></span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <header id="home" class="hero section">
+        <div class="container hero-grid">
+            <div class="hero-content reveal">
+                <p class="subheadline">Aspiring Software Developer & Electronics Engineer</p>
+                <h1 class="headline">Hello, I’m <br><span class="accent-text" style="color:var(--primary)">Piyush Dolas.</span></h1>
+                <p class="hero-description">Passionate about Software Development, AI, SQL, Embedded Systems, and building efficient real-world solutions.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Let's Talk</a>
+                    <a href="#projects" class="btn btn-secondary">View Projects</a>
+                </div>
+            </div>
+            <div class="hero-img-container reveal">
+                <img src="Website Profile Pic.png" alt="Piyush Dolas" class="profile-img">
+            </div>
+        </div>
+    </header>
+
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title reveal">Skills & Expertise</h2>
+            <div class="grid-layout">
+                <div class="card reveal">
+                    <h3>Programming</h3>
+                    <p>C, C++, Python, SQL, HTML, CSS, JavaScript</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Databases</h3>
+                    <p>MySQL, MongoDB</p>
+                </div>
+                <div class="card reveal">
+                    <h3>AI & Data</h3>
+                    <p>Python, Machine Learning basics</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Embedded & IoT</h3>
+                    <p>Arduino, Sensors, GSM, Proteus</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Concepts</h3>
+                    <p>DSA, DBMS, OOPs</p>
+                </div>
+                <div class="card reveal">
+                    <h3>Tools</h3>
+                    <p>Git, GitHub, VS Code, AWS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title reveal">Professional Experience</h2>
+            <div class="exp-card reveal">
+                <div class="exp-header">
+                    <h3>AI Intern</h3>
+                    <span class="badge">CodSoft</span>
+                </div>
+                <p>Worked on Python-based AI/ML projects. Gained hands-on experience with data processing, model logic, and real-world problem solving.</p>
+            </div>
+            <div class="exp-card reveal">
+                <div class="exp-header">
+                    <h3>SQL Intern</h3>
+                    <span class="badge">RD Info Technology</span>
+                </div>
+                <p>Designed and managed relational databases. Worked on SQL queries, joins, constraints, and normalization. Built mini database-driven applications.</p>
+            </div>
+            <div class="sim-grid reveal">
+                <div class="sim-item">C++ Internship – EliteTech</div>
+                <div class="sim-item">AWS Solutions Arch – Forage</div>
+                <div class="sim-item">Tech & Cyber – Deloitte</div>
+                <div class="sim-item">Quant Research – JP Morgan</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title reveal">Projects</h2>
+            <div class="grid-layout">
+                <div class="card reveal">
+                    <h3>IR Braking System</h3>
+                    <p>Automated vehicle safety system using infrared sensing technology.</p>
+                    <div class="tags"><span>Embedded Systems</span></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Gas Leakage Detector</h3>
+                    <p>IoT-based safety alert system using GSM and Arduino.</p>
+                    <div class="tags"><span>IoT</span><span>Arduino</span></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Weather App</h3>
+                    <p>Real-time weather data tracker using API and Vanilla JavaScript.</p>
+                    <div class="tags"><span>JavaScript</span><span>API</span></div>
+                </div>
+                <div class="card reveal">
+                    <h3>File Management Tool</h3>
+                    <p>System utility developed in C++ for efficient file organization.</p>
+                    <div class="tags"><span>C++</span></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Attendance System</h3>
+                    <p>Database-driven management system for student records.</p>
+                    <div class="tags"><span>SQL</span></div>
+                </div>
+                <div class="card reveal">
+                    <h3>Food Ordering DB</h3>
+                    <p>Complex MySQL schema for online food ordering services.</p>
+                    <div class="tags"><span>MySQL</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container edu-grid">
+            <div class="reveal">
+                <h2 class="section-title">Education</h2>
+                <h3>B.E. Electronics & Computer Engineering</h3>
+                <p>Zeal College of Engineering & Research, Pune</p>
+                <p><strong>CGPA: 8.89</strong> | Expected 2027</p>
+                <div class="mt-2">
+                    <h4>Extracurricular</h4>
+                    <ul class="list-style">
+                        <li>NSS Volunteer</li>
+                        <li>E-Cell PCR Team Member</li>
+                        <li>Velox E-Bike Core Member</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="reveal">
+                <h2 class="section-title">Certifications</h2>
+                <ul class="list-style">
+                    <li>MongoDB Certification</li>
+                    <li>AWS Cloud Foundations</li>
+                    <li>Deloitte Technology Program</li>
+                    <li>Cybersecurity & Generative AI</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section bg-light">
+        <div class="container contact-box">
+            <div class="reveal">
+                <p>Open to internships, collaborations, and learning opportunities.</p>
+                <h1 class="huge-text">Let's Talk</h1>
+                <p>Pune, Maharashtra | piyush.dolas8@gmail.com</p>
+                
+                
+          
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 Piyush Dolas | Senior Front-End Design Concept</p>
+    </footer>
+
+    <script>
+        // --- SCROLL REVEAL ANIMATION ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // --- NAVIGATION ACTIVE LINK ---
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach((link) => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
